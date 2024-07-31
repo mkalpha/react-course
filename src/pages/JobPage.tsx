@@ -25,12 +25,14 @@ const JobPage = ({ deleteJob } : { deleteJob: (id: string) => void}) => {
 
     const navigate = useNavigate()
 
-    const submitDeleteJob = (e: MouseEvent<HTMLButtonElement>) => {
+    const onDeleteClick = (e: MouseEvent<HTMLButtonElement>) => {
       e.preventDefault()
-      // TODO: No non-null assertion
-      deleteJob(id!)
+      const confirm = window.confirm('Are you sure ?')
+      if (!confirm) return
+      
+      deleteJob(job.id)
       return navigate('/jobs')
-  }
+    }
 
     useEffect(() => {
         const fetchJob = async() => {
@@ -133,7 +135,7 @@ const JobPage = ({ deleteJob } : { deleteJob: (id: string) => void}) => {
               </Link>
               <button
                 className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
-                onClick={submitDeleteJob}
+                onClick={onDeleteClick}
               >
                 Delete Job
               </button>
