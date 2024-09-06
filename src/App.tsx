@@ -30,10 +30,7 @@ const App = () => {
   const deleteJob = async(id: string) =>{
     console.log("delete", id)
     const res = await fetch(`/api/jobs/${id}`, {
-      method: 'DELETE',
-      headers : {
-        'Content-Type' : 'application/json'
-      }
+      method: 'DELETE'
     })
     console.log('res :', res);
     return
